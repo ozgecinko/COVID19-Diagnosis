@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="static/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>COVID-19 Diagnosis</title>
+
+  </head>
+  <body>
+    <main>
+        <div class="container">
+            <p><i>Contact with Author:
+            <a href="mailto:cinkoozge@gmail.com">Özge Çinko</a></i></p>
+            <div class="col-md-6">
+              <h1>COVID-19 Self-Checker</h1>  
+              <h4>Upload your X-Ray image, then learn if you have COVID-19 risk or not.</h4>
+
+              <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+                <div class="form-control">
+                  <div class="show-xray">
+                    {% if prediction %}
+                    <img src="{{img_path}}">
+                    <h2> COVID-19 Prediction:  <b style="color:red">{{prediction}}</b></h2>
+                    {% endif %}
+                  </div>
+                  <label for="xray">Upload X-Ray Image</label>
+                  <input type="file" id="xray" accept="image/*" name="my_image" onchange="this.form.submit()"/>
+                </div>
+               </form> 
+            </div>             
+        </div>        
+    </main>
+
+    <!-- Template Main JS File -->
+    <script src="static/assets/js/main.js"></script>
+  </body>
+</html>
