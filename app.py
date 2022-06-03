@@ -37,12 +37,10 @@ def get_output():
 		img = request.files['my_image']
 		img_path = "static/tests/" + img.filename	
 		img.save(img_path)
-
+		
 		predict_result = predict_label(img_path)
 
-	return render_template(
-		"index.html", prediction = predict_result, img_path = img_path
-		)
+	return render_template("index.html", prediction = predict_result, img_path = img_path)
 
 
 if __name__ == "__main__":
