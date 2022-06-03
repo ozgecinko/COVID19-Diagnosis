@@ -33,7 +33,7 @@ def main():
 
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
-	if request.method == "POST":
+	if request.method == "POST" or request.method == "GET":
 		img = request.files['my_image']
 		img_path = "static/tests/" + img.filename	
 		img.save(img_path)
