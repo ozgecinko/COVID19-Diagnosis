@@ -3,6 +3,7 @@ from keras.models import load_model
 from keras.preprocessing import image
 from keras.metrics import AUC
 import numpy as np
+import sys
 
 app = Flask(__name__)
 
@@ -33,15 +34,18 @@ def main():
 
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
-	if request.method == "POST" or request.method == "GET":
+	if request.method == "POST":
 		img = request.files['my_image']
 		img_path = "static/tests/" + img.filename	
 		img.save(img_path)
 		
+		predict_result = predict_label(img_path)
+	else:
+		img_path = "static/tests/" + request.files['my_image'].filename
 		predict_result = predict_label(img_path)
 
 	return render_template("index.html", prediction = predict_result, img_path = img_path)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+	app.run(debug=True)
